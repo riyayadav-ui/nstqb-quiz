@@ -240,7 +240,7 @@ export default function App() {
       setCurrent(c=>c+1); setSelected(null); setRevealed(false); setAnimKey(k=>k+1);
     } else {
       const all = {...answers,[current]:selected};
-      const final = Object.entries(all).reduce((acc,[qi,ai])=>acc+(QUESTIONS[qi].answer===ai?1:0),0);
+      const final = Object.entries(all).reduce((acc,[qi,ai])=>acc+(shuffledQs[Number(qi)].answer===ai?1:0),0);
       setScore(final); setSaving(true);
       await saveParticipant({name:user.name,email:user.email,organization:user.organization,score:final,date:new Date().toISOString()});
       setSaving(false); setScreen("result");
